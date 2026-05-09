@@ -9,7 +9,8 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
 
-    let contents = fs::read_to_string(&config.filename).expect("Something went wrong reading the file");
+    let contents =
+        fs::read_to_string(&config.filename).expect("Something went wrong reading the file");
 
     println!("With text: \n{}", contents);
 }
@@ -19,9 +20,13 @@ struct Config {
     filename: String,
 }
 
-impl Config{
+impl Config {
     // the new function is a convention for a constructor in Rust
     fn new(args: &[String]) -> Config {
+        if args.len() < 3 {
+            panic!("Not enough arguments");
+        }
+
         let query = args[1].clone();
         let filename = args[2].clone();
 
