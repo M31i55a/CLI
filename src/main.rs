@@ -4,7 +4,7 @@ use std::fs;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let config: Config = parse_config(&args);
+    let config: Config = Config::new(&args);
 
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
@@ -19,9 +19,12 @@ struct Config {
     filename: String,
 }
 
-fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone();
-    let filename = args[2].clone();
+impl Config{
+    // the new function is a convention for a constructor in Rust
+    fn new(args: &[String]) -> Config {
+        let query = args[1].clone();
+        let filename = args[2].clone();
 
-    Config { query, filename }
+        Config { query, filename }
+    }
 }
