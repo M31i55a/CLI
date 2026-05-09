@@ -1,26 +1,11 @@
-use std::io;
-
-//function to add two numbers
-fn add(a: i32, b: i32) -> i32{
-    return a + b;
-}
+use std::env;
 
 fn main() {
-    println!("Hello, world!");
+    let args: Vec<String> = env::args().collect();
 
-    let mut input = String::new();
+    let query = &args[1];
+    let filename = &args[2];
 
-    println!("Enter the first number: ");
-    io::stdin().read_line(&mut input).expect("Failed to read input");
-    let num1: i32 = input.trim().parse().expect("Please enter a number");
-    input.clear(); //clean the input for reuse
-
-    println!("Enter the second number: ");
-    io::stdin().read_line(&mut input).expect("Failed to read input");
-    let num2: i32 = input.trim().parse().expect("Please enter a number");
-
-    let sum: i32 = add(num1, num2);
-
-    println!("The sum of {} and {} is {}", num1, num2, sum);
+    println!("Searching for {}", query);
+    println!("In file {}", filename);
 }
- 
